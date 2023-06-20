@@ -8,9 +8,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: THEME.COLORS.PURPLE
   },
-
-  logo: {
-    width: 80,
-    height: 100
-  }
 })
