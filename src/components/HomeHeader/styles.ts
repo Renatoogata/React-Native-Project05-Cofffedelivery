@@ -4,8 +4,7 @@ import { THEME } from '@styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: THEME.COLORS.GRAY_100,
-    paddingHorizontal: 32,
+    flexDirection: 'column',
   },
 
   header: {
@@ -34,6 +33,6 @@ export const styles = StyleSheet.create({
 
   image: {
     alignSelf: 'flex-end',
-    marginBottom: 60
+    marginBottom: 42,
   },
 })

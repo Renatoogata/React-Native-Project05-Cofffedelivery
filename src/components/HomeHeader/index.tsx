@@ -3,7 +3,7 @@ import { MapPin, ShoppingCart } from "phosphor-react-native";
 
 import { Input } from "@components/Input";
 
-import Coffee from '@assets/coffee.svg'
+import CoffeeImg from '@assets/coffee.svg'
 
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
@@ -38,7 +38,7 @@ export function HomeHeader() {
         placeholder="Pesquisar"
       />
 
-      <Coffee
+      <CoffeeImg
         style={styles.image}
       />
     </View>
