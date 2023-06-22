@@ -12,12 +12,45 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
 
+  title: {
+    fontFamily: THEME.FONTS.BALOO2_BOLD,
+    fontSize: THEME.SIZES.ROBOTO.LG,
+    color: THEME.COLORS.WHITE,
+    marginBottom: 15,
+  },
+
+  image: {
+    alignSelf: 'flex-end',
+    marginBottom: 42,
+  },
+
+
   body: {
-    marginTop: -80,
-    paddingHorizontal: 32,
+    marginTop: -100,
+    paddingLeft: 32,
   },
 
   carrousel: {
     flexDirection: 'row',
+  },
+
+  subtitle: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontFamily: THEME.FONTS.BALOO2_BOLD,
+    fontSize: THEME.SIZES.BALOO2.SM,
+    color: THEME.COLORS.GRAY_300,
+  },
+
+  type: {
+    flexDirection: 'row'
+  },
+
+  typeCoffee: {
+    marginTop: 20,
+    marginBottom: 12,
+    fontFamily: THEME.FONTS.BALOO2_BOLD,
+    fontSize: THEME.SIZES.BALOO2.XS,
+    color: THEME.COLORS.GRAY_100,
   }
 });

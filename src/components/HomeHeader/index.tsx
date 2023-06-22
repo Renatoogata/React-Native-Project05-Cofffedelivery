@@ -1,10 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { MapPin, ShoppingCart } from "phosphor-react-native";
 
-import { Input } from "@components/Input";
-
-import CoffeeImg from '@assets/coffee.svg'
-
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
 
@@ -29,18 +25,6 @@ export function HomeHeader() {
           />
         </TouchableOpacity>
       </View>
-
-      <Text style={styles.title}>
-        Encontre o café perfeito para qualquer hora do dia
-      </Text>
-
-      <Input
-        placeholder="Pesquisar"
-      />
-
-      <CoffeeImg
-        style={styles.image}
-      />
     </View>
   )
 }

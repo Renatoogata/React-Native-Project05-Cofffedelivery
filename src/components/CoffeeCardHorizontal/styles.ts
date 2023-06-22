@@ -3,52 +3,37 @@ import { THEME } from "@styles/theme";
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    width: 208,
-    height: 262,
-    backgroundColor: THEME.COLORS.RED_LIGHT,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 26,
-    borderBottomLeftRadius: 26,
-    borderBottomRightRadius: 6,
-
+    flexDirection: 'row',
     alignItems: 'center',
-
+    marginBottom: -12,
   },
 
   image: {
-    marginTop: -34,
+    paddingBottom: 60,
   },
 
-  type: {
-    marginTop: 6,
-    backgroundColor: THEME.COLORS.PURPLE_LIGHT,
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: 20,
-    color: THEME.COLORS.PURPLE_DARK,
-    fontFamily: THEME.FONTS.ROBOTO_BOLD,
-    fontSize: THEME.SIZES.ROBOTO.TAG
+  info: {
+    paddingRight: 32,
+    marginLeft: 6,
+    width: 210,
   },
 
   name: {
-    marginTop: 16,
     fontFamily: THEME.FONTS.BALOO2_BOLD,
-    fontSize: THEME.SIZES.BALOO2.MD,
+    fontSize: THEME.SIZES.ROBOTO.SM,
     color: THEME.COLORS.GRAY_200,
   },
 
-  decription: {
-    marginTop: 6,
+  description: {
     fontFamily: THEME.FONTS.ROBOTO_REGULAR,
     fontSize: THEME.SIZES.ROBOTO.XS,
     color: THEME.COLORS.GRAY_400,
-    textAlign: "center",
+    flexShrink: 1
   },
 
   priceContainer: {
     flexDirection: 'row',
-    marginTop: 22,
+    marginTop: 8,
     alignItems: 'baseline'
   },
 

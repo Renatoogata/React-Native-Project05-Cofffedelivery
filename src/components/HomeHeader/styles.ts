@@ -23,16 +23,4 @@ export const styles = StyleSheet.create({
     fontSize: THEME.SIZES.ROBOTO.SM,
     color: THEME.COLORS.GRAY_900,
   },
-
-  title: {
-    fontFamily: THEME.FONTS.BALOO2_BOLD,
-    fontSize: THEME.SIZES.ROBOTO.LG,
-    color: THEME.COLORS.WHITE,
-    marginBottom: 15,
-  },
-
-  image: {
-    alignSelf: 'flex-end',
-    marginBottom: 42,
-  },
 })
