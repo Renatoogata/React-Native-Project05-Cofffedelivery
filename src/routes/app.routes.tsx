@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { AppStart } from '@screens/AppStart';
 import { Home } from '@screens/Home';
 import { Coffee } from '@screens/Coffee';
+import { Cart } from '@screens/Cart';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -24,6 +25,10 @@ export function AppRoutes() {
       <Screen
         name='coffee'
         component={Coffee}
+      />
+      <Screen
+        name='cart'
+        component={Cart}
       />
     </Navigator>
   )

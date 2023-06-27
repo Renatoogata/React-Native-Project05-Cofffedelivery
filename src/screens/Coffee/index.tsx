@@ -20,6 +20,10 @@ export function Coffee() {
     navigation.navigate('home')
   }
 
+  function handleOpenCart() {
+    navigation.navigate('cart')
+  }
+
   function handleSelectSize(size: string) {
     setSelectedSize(size);
   }
@@ -51,7 +55,7 @@ export function Coffee() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ paddingHorizontal: 8 }}>
+          <TouchableOpacity style={{ paddingHorizontal: 8 }} onPress={handleOpenCart}>
             <ShoppingCart
               size={24}
               color={THEME.COLORS.PURPLE}

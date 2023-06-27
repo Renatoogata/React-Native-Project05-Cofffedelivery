@@ -4,6 +4,7 @@ export declare global {
       home: undefined;
       appstart: undefined;
       coffee: undefined;
+      cart: undefined;
     }
   }
 }
