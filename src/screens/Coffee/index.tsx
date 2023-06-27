@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { ArrowLeft, ShoppingCart } from 'phosphor-react-native'
+import { ArrowLeft, ShoppingCart, Plus, Minus } from 'phosphor-react-native'
 import { useNavigation } from "@react-navigation/native";
 
-import coffeeCup from '@assets/coffeeCup.png'
-
-import { THEME } from "@styles/theme";
-import { styles } from "./styles";
+import { Button, colors } from "@components/Button";
 import { CoffeeSizeSelectRadio } from "@components/CoffeeSizeSelectRadio";
 
+import coffeeCup from '@assets/coffeeCup.png'
+import { THEME } from "@styles/theme";
+import { styles } from "./styles";
+
 export function Coffee() {
+  const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('')
 
   const navigation = useNavigation()
@@ -20,6 +22,22 @@ export function Coffee() {
 
   function handleSelectSize(size: string) {
     setSelectedSize(size);
+  }
+
+  function handleAddQuantity() {
+    if (quantity < 9) {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  function handleSubtractQuantity() {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  function handleAddToCart() {
+    console.log('Adicionao ao carrinho')
   }
 
   return (
@@ -76,12 +94,44 @@ export function Coffee() {
 
       </View>
       <View style={styles.footer}>
-        <Text>Selecione o tamanho</Text>
+        <Text style={styles.sizeText}>Selecione o tamanho:</Text>
+
         <CoffeeSizeSelectRadio
           options={['114', '140', '227']}
-          selectedOption={selectedSize}
-          onSelectOption={handleSelectSize}
+          selectedSize={selectedSize}
+          onSelectSize={handleSelectSize}
         />
+
+        <View style={styles.footerOptions}>
+
+
+          <TouchableOpacity
+            style={{ marginRight: 18 }}
+            onPress={handleSubtractQuantity}
+            disabled={quantity === 1}
+          >
+            <Minus size={20} color={quantity === 1 ? THEME.COLORS.PURPLE_LIGHT : THEME.COLORS.PURPLE} />
+          </TouchableOpacity>
+
+          <Text>
+            {quantity}
+          </Text>
+
+          <TouchableOpacity
+            style={{ marginLeft: 18, marginRight: 26 }}
+            onPress={handleAddQuantity}
+            disabled={quantity === 9}
+          >
+            <Plus size={20} color={quantity === 9 ? THEME.COLORS.PURPLE_LIGHT : THEME.COLORS.PURPLE} />
+          </TouchableOpacity>
+
+
+          <Button
+            title="ADICIONAR"
+            color={colors.purpleDark}
+            onPress={handleAddToCart}
+          />
+        </View>
       </View>
     </View>
   )

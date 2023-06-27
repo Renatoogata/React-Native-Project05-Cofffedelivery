@@ -89,5 +89,19 @@ export const styles = StyleSheet.create({
     marginTop: 60,
     paddingHorizontal: 32,
     backgroundColor: THEME.COLORS.WHITE,
+  },
+
+  sizeText: {
+    fontFamily: THEME.FONTS.ROBOTO_REGULAR,
+    fontSize: THEME.SIZES.ROBOTO.SM,
+    color: THEME.COLORS.GRAY_400,
+  },
+
+  footerOptions: {
+    paddingHorizontal: 8,
+    marginTop: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
