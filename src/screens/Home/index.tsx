@@ -18,7 +18,7 @@ export function Home() {
       <View style={styles.header}>
         <HomeHeader />
       </View>
-      <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Text style={styles.title}>
             Encontre o café perfeito para qualquer hora do dia

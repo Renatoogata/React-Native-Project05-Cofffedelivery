@@ -3,6 +3,7 @@ export declare global {
     interface RootParamList {
       home: undefined;
       appstart: undefined;
+      coffee: undefined;
     }
   }
 }
