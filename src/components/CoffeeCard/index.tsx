@@ -22,7 +22,7 @@ export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeP
         {tag.toUpperCase()}
       </Text>
 
-      <Text style={styles.name}>
+      <Text numberOfLines={1} style={styles.name}>
         {name}
       </Text>
 
