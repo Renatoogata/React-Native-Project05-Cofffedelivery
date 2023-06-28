@@ -14,6 +14,10 @@ export function Cart() {
 
   const navigation = useNavigation()
 
+  function handleFinishOrder() {
+    navigation.navigate('successful')
+  }
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -56,6 +60,7 @@ export function Cart() {
         <Button
           title="CONFIRMAR PEDIDO"
           color={colors.yellowRegular}
+          onPress={handleFinishOrder}
         />
       </View>
     </View>

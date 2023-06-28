@@ -5,6 +5,7 @@ export declare global {
       appstart: undefined;
       coffee: undefined;
       cart: undefined;
+      successful: undefined;
     }
   }
 }

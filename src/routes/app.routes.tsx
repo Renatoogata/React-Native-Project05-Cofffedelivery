@@ -4,6 +4,7 @@ import { AppStart } from '@screens/AppStart';
 import { Home } from '@screens/Home';
 import { Coffee } from '@screens/Coffee';
 import { Cart } from '@screens/Cart';
+import { Successful } from '@screens/Successful';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -29,6 +30,10 @@ export function AppRoutes() {
       <Screen
         name='cart'
         component={Cart}
+      />
+      <Screen
+        name='successful'
+        component={Successful}
       />
     </Navigator>
   )
