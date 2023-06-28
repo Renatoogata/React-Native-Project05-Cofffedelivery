@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     width: 208,
     height: 262,
-    backgroundColor: THEME.COLORS.RED_LIGHT,
+    backgroundColor: THEME.COLORS.GRAY_800,
     borderTopLeftRadius: 6,
     borderTopRightRadius: 26,
     borderBottomLeftRadius: 26,

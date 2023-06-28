@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
 
   typeCoffeeContainer: {
     marginTop: 34,
-    width: 70,
+    maxWidth: 86,
     backgroundColor: THEME.COLORS.GRAY_300,
     paddingVertical: 4,
     paddingHorizontal: 10,

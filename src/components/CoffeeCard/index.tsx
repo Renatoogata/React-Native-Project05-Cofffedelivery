@@ -1,9 +1,13 @@
-import { View, Text } from "react-native";
-import { styles } from "./styles";
+import { View, Text, Image } from "react-native";
 
+import SvgUri from 'expo-svg-uri';
+
+import { CoffeeProduct } from "@dtos/CoffeeProduct";
 import CoffeeImg from '@assets/coffee/Type=Americano.svg'
 
-export function CoffeeCard() {
+import { styles } from "./styles";
+
+export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeProduct) {
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -11,18 +15,19 @@ export function CoffeeCard() {
           width={120}
           height={120}
         />
+
       </View>
 
       <Text style={styles.type}>
-        TRADICIONAL
+        {tag.toUpperCase()}
       </Text>
 
       <Text style={styles.name}>
-        Latte
+        {name}
       </Text>
 
       <Text style={styles.decription}>
-        Café expresso com o dobro de leite e espuma cremosa
+        {description}
       </Text>
 
       <View style={styles.priceContainer}>
@@ -31,7 +36,7 @@ export function CoffeeCard() {
         </Text>
 
         <Text style={styles.price}>
-          9,90
+          {price}
         </Text>
       </View>
     </View>

@@ -3,7 +3,7 @@ export declare global {
     interface RootParamList {
       home: undefined;
       appstart: undefined;
-      coffee: undefined;
+      coffee: { productId: string };
       cart: undefined;
       successful: undefined;
     }

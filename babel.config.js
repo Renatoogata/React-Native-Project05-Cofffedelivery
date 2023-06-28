@@ -16,6 +16,7 @@ module.exports = function (api) {
             '@styles': './src/styles',
             '@utils': './src/utils',
             '@dtos': './src/dtos',
+            '@api': './src/api',
           }
         }
       ],

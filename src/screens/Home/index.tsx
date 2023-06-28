@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
+
+import { getCoffees } from "@api/mock/coffeeList";
 
 import { HomeHeader } from "@components/HomeHeader";
 import { Carousel } from "@components/Carousel";
@@ -8,10 +11,17 @@ import { CoffeeType } from "@components/CoffeeType";
 import { styles } from "./styles";
 import CoffeeImg from '@assets/coffee.svg'
 import { CoffeeCardHorizontal } from "@components/CoffeeCardHorizontal";
-
+import { CoffeeProduct } from "@dtos/CoffeeProduct";
 
 export function Home() {
-  const products = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7])
+  const [coffeeList, setCoffeeList] = useState<CoffeeProduct[]>([]);
+
+  useEffect(() => {
+    getCoffees().then((data) => {
+      setCoffeeList(data)
+    });
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -35,7 +45,7 @@ export function Home() {
 
         <View style={styles.body}>
           <View style={styles.carrousel}>
-            <Carousel products={products} />
+            <Carousel coffeeList={coffeeList} />
           </View>
 
           <Text style={styles.subtitle}>

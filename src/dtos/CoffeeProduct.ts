@@ -1,8 +1,9 @@
 export type CoffeeProduct = {
-  id: string;
-  image: string;
-  type: string;
+  id: number;
   name: string;
   description: string;
+  tag: string;
   price: number;
+  size: number[];
+  image: any;
 }

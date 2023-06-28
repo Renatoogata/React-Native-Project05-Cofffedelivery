@@ -13,22 +13,30 @@ interface CarouselProps {
   products: CoffeeProduct[];
 }
 
-export function Carousel({ products }: any) {
+export function Carousel({ coffeeList }: any) {
   const renderSeparator = () => <View style={styles.separator} />;
   const navigation = useNavigation();
 
-  function handleOpenCoffee() {
-    navigation.navigate('coffee')
+  function handleOpenCoffee(productId: string) {
+    navigation.navigate('coffee', { productId })
   }
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={products}
-        keyExtractor={(item) => item}
+        data={coffeeList}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={handleOpenCoffee}>
-            <CoffeeCard />
+          <TouchableOpacity onPress={() => handleOpenCoffee(item.id)}>
+            <CoffeeCard
+              id={item.id}
+              image={item.image}
+              tag={item.tag}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              size={item.size}
+            />
           </TouchableOpacity>
         )}
         horizontal

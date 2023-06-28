@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { ArrowLeft, ShoppingCart, Plus, Minus } from 'phosphor-react-native'
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Button, colors } from "@components/Button";
 import { CoffeeSizeSelectRadio } from "@components/CoffeeSizeSelectRadio";
 
+import { getCoffees } from "@api/mock/coffeeList";
+
 import coffeeCup from '@assets/coffeeCup.png'
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
+import { CoffeeProduct } from "@dtos/CoffeeProduct";
+
+type RouteParamsProps = {
+  productId: number
+}
 
 export function Coffee() {
+  const route = useRoute()
+  const { productId } = route.params as RouteParamsProps
+
+  const [coffeeSelected, setCoffeeSelected] = useState<CoffeeProduct>()
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('')
 
   const navigation = useNavigation()
+
+  const priceFormated = coffeeSelected?.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
   function handleBackToHome() {
     navigation.navigate('home')
@@ -44,6 +57,13 @@ export function Coffee() {
     console.log('Adicionao ao carrinho')
   }
 
+  useEffect(() => {
+    getCoffees().then((data) => {
+      const coffee = data.filter(data => data.id === productId)
+      setCoffeeSelected(coffee[0])
+    })
+  }, [productId])
+
   return (
     <View style={styles.container}>
       <View style={styles.body}>
@@ -66,13 +86,13 @@ export function Coffee() {
 
         <View style={styles.typeCoffeeContainer}>
           <Text style={styles.typeCoffeeText}>
-            ESPECIAL
+            {coffeeSelected?.tag.toUpperCase()}
           </Text>
         </View>
 
         <View style={styles.infoContainer}>
           <Text style={styles.title}>
-            Irlandês
+            {coffeeSelected?.name}
           </Text>
 
           <View style={styles.priceContainer}>
@@ -81,13 +101,13 @@ export function Coffee() {
             </Text>
 
             <Text style={styles.price}>
-              9,90
+              {priceFormated}
             </Text>
           </View>
         </View>
 
         <Text style={styles.description}>
-          Bebida a base de café, uísque irlandês, açucar e chantilly
+          {coffeeSelected?.description}
         </Text>
 
         <View style={styles.image}>
