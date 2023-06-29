@@ -1,16 +1,22 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+
+import { THEME } from "@styles/theme";
 import { styles } from "./styles";
 
-type props = {
+type props = TouchableOpacityProps & {
   name: string
+  typeIsSelected: boolean
 }
 
-export function CoffeeType({ name }: props) {
+export function CoffeeType({ name, typeIsSelected, ...rest }: props) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
+    <TouchableOpacity
+      style={[styles.container, typeIsSelected && { backgroundColor: THEME.COLORS.PURPLE }]}
+      {...rest}
+    >
+      <Text style={[styles.text, typeIsSelected && { color: THEME.COLORS.WHITE }]}>
         {name}
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 }

@@ -14,14 +14,23 @@ import { CoffeeCardHorizontal } from "@components/CoffeeCardHorizontal";
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
 
 export function Home() {
-  const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7])
   const [coffeeList, setCoffeeList] = useState<CoffeeProduct[]>([]);
+  const [typeFilter, setTypeFilter] = useState<string[]>(['tradicional']);
 
   const filterTradicional = coffeeList.filter(coffee => coffee.tag === 'tradicional')
   const filterSweet = coffeeList.filter(coffee => coffee.tag === 'doce')
   const filterSpecial = coffeeList.filter(coffee => coffee.tag === 'especial')
 
-  console.log(filterTradicional)
+  function handleFilterByType(type: string) {
+    if (typeFilter.find(filter => filter === type) && typeFilter.length > 1) {
+      const newFilter = typeFilter.filter((filter) => filter !== type)
+      setTypeFilter(newFilter);
+    } else if (!typeFilter.find(filter => filter === type)) {
+      setTypeFilter((state) => [...state, type]);
+    }
+  }
+
+  console.log(typeFilter)
 
   useEffect(() => {
     getCoffees().then((data) => {
@@ -59,12 +68,14 @@ export function Home() {
           </Text>
 
           <View style={styles.type}>
-            <CoffeeType name="TRADICIONAIS" />
-            <CoffeeType name="DOCES" />
-            <CoffeeType name="ESPECIAIS" />
+            <CoffeeType name="TRADICIONAIS" typeIsSelected={typeFilter.includes('tradicional')} onPress={(() => handleFilterByType('tradicional'))} />
+            <CoffeeType name="DOCES" typeIsSelected={typeFilter.includes('doce')} onPress={(() => handleFilterByType('doce'))} />
+            <CoffeeType name="ESPECIAIS" typeIsSelected={typeFilter.includes('especial')} onPress={(() => handleFilterByType('especial'))} />
           </View>
 
           {
+            typeFilter.find(filter => filter === 'tradicional')
+            &&
             <View>
               <Text style={styles.typeCoffee}>
                 Tradicionais
@@ -78,6 +89,8 @@ export function Home() {
           }
 
           {
+            typeFilter.find(filter => filter === 'doce')
+            &&
             <View>
               <Text style={styles.typeCoffee}>
                 Doces
@@ -91,6 +104,8 @@ export function Home() {
           }
 
           {
+            typeFilter.find(filter => filter === 'especial')
+            &&
             <View>
               <Text style={styles.typeCoffee}>
                 Especial
