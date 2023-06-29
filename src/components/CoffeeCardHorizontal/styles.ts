@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   image: {
-    paddingBottom: 60,
+    paddingBottom: 56,
   },
 
   info: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
 
   priceContainer: {
     flexDirection: 'row',
-    marginTop: 8,
+    marginTop: 6,
     alignItems: 'baseline'
   },
 

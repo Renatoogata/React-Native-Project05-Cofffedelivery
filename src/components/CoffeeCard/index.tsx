@@ -1,6 +1,4 @@
-import { View, Text, Image } from "react-native";
-
-import SvgUri from 'expo-svg-uri';
+import { View, Text } from "react-native";
 
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
 import CoffeeImg from '@assets/coffee/Type=Americano.svg'
@@ -8,6 +6,8 @@ import CoffeeImg from '@assets/coffee/Type=Americano.svg'
 import { styles } from "./styles";
 
 export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeProduct) {
+  const priceFormated = price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -36,7 +36,7 @@ export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeP
         </Text>
 
         <Text style={styles.price}>
-          {price}
+          {priceFormated}
         </Text>
       </View>
     </View>

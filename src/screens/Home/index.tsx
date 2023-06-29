@@ -17,6 +17,12 @@ export function Home() {
   const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7])
   const [coffeeList, setCoffeeList] = useState<CoffeeProduct[]>([]);
 
+  const filterTradicional = coffeeList.filter(coffee => coffee.tag === 'tradicional')
+  const filterSweet = coffeeList.filter(coffee => coffee.tag === 'doce')
+  const filterSpecial = coffeeList.filter(coffee => coffee.tag === 'especial')
+
+  console.log(filterTradicional)
+
   useEffect(() => {
     getCoffees().then((data) => {
       setCoffeeList(data)
@@ -58,13 +64,44 @@ export function Home() {
             <CoffeeType name="ESPECIAIS" />
           </View>
 
-          <Text style={styles.typeCoffee}>
-            Tradicionais
-          </Text>
+          {
+            <View>
+              <Text style={styles.typeCoffee}>
+                Tradicionais
+              </Text>
+              {
+                filterTradicional.map((coffee) => (
+                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                ))
+              }
+            </View>
+          }
 
-          <CoffeeCardHorizontal />
-          <CoffeeCardHorizontal />
-          <CoffeeCardHorizontal />
+          {
+            <View>
+              <Text style={styles.typeCoffee}>
+                Doces
+              </Text>
+              {
+                filterSweet.map((coffee) => (
+                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                ))
+              }
+            </View>
+          }
+
+          {
+            <View>
+              <Text style={styles.typeCoffee}>
+                Especial
+              </Text>
+              {
+                filterSpecial.map((coffee) => (
+                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                ))
+              }
+            </View>
+          }
         </View>
       </ScrollView>
     </View>

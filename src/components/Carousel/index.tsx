@@ -17,7 +17,7 @@ export function Carousel({ coffeeList }: any) {
   const renderSeparator = () => <View style={styles.separator} />;
   const navigation = useNavigation();
 
-  function handleOpenCoffee(productId: string) {
+  function handleOpenCoffee(productId: number) {
     navigation.navigate('coffee', { productId })
   }
 
