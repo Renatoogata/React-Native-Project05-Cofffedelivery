@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
-import CoffeeImg from '@assets/coffee/Type=Americano.svg'
 
 import { styles } from "./styles";
+
 
 export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeProduct) {
   const priceFormated = price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
@@ -11,9 +11,9 @@ export function CoffeeCard({ id, name, description, price, tag, image }: CoffeeP
   return (
     <View style={styles.container}>
       <View style={styles.image}>
-        <CoffeeImg
-          width={120}
-          height={120}
+        <Image
+          source={image}
+          style={{ width: 120, height: 120 }}
         />
 
       </View>

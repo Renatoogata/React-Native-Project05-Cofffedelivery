@@ -1,17 +1,17 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
-import CoffeeImg from '@assets/coffee/Type=Americano.svg'
 
 type props = {
   id: number;
   name: string;
   description: string;
   price: number;
+  image: any;
 }
 
-export function CoffeeCardHorizontal({ id, name, description, price }: props) {
+export function CoffeeCardHorizontal({ id, name, description, price, image }: props) {
   const navigation = useNavigation()
 
   const priceFormated = price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
@@ -23,9 +23,9 @@ export function CoffeeCardHorizontal({ id, name, description, price }: props) {
   return (
     <TouchableOpacity style={styles.container} onPress={handleOpenCoffee}>
       <View style={styles.image}>
-        <CoffeeImg
-          width={96}
-          height={96}
+        <Image
+          source={image}
+          style={{ width: 96, height: 96 }}
         />
       </View>
 

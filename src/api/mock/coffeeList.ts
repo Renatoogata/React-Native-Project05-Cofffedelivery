@@ -6,7 +6,7 @@ const coffeeMock = [
     tag: 'tradicional',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('../../assets/coffee/Type=Americano.svg'),
+    image: require('@assets/coffee/americano.png'),
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const coffeeMock = [
     tag: 'especial',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Árabe.svg'),
+    image: require('@assets/coffee/arabe.png'),
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const coffeeMock = [
     tag: 'doce',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Café com Leite.svg'),
+    image: require('@assets/coffee/cafeComLeite.png'),
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const coffeeMock = [
     tag: 'tradicional',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Café Gelado.svg'),
+    image: require('@assets/coffee/cafeGelado.png'),
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const coffeeMock = [
     tag: 'doce',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Capuccino.svg'),
+    image: require('@assets/coffee/capuccino.png'),
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const coffeeMock = [
     tag: 'doce',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Chocolate Quente.svg'),
+    image: require('@assets/coffee/chocolateQuente.png'),
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const coffeeMock = [
     tag: 'especial',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Cubano.svg'),
+    image: require('@assets/coffee/cubano.png'),
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const coffeeMock = [
     tag: 'tradicional',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Expresso Cremoso.svg'),
+    image: require('@assets/coffee/expressoCremoso.png'),
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const coffeeMock = [
     tag: 'tradicional',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Expresso.svg'),
+    image: require('@assets/coffee/expresso.png'),
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const coffeeMock = [
     tag: 'especial',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Havaiano.svg'),
+    image: require('@assets/coffee/havaiano.png'),
   },
   {
     id: 11,
@@ -96,7 +96,7 @@ const coffeeMock = [
     tag: 'especial',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Irlandês.svg'),
+    image: require('@assets/coffee/irlandes.png'),
   },
   {
     id: 12,
@@ -105,7 +105,7 @@ const coffeeMock = [
     tag: 'tradicional',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Latte.svg'),
+    image: require('@assets/coffee/latte.png'),
   },
   {
     id: 13,
@@ -114,7 +114,7 @@ const coffeeMock = [
     tag: 'doce',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Macchiato.svg'),
+    image: require('@assets/coffee/macchiato.png'),
   },
   {
     id: 14,
@@ -123,7 +123,7 @@ const coffeeMock = [
     tag: 'doce',
     price: 9.99,
     size: [114, 140, 227],
-    image: require('@assets/coffee/Type=Mochaccino.svg'),
+    image: require('@assets/coffee/mochaccino.png'),
   },
 ]
 

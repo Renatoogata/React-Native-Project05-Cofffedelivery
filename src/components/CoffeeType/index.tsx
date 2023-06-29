@@ -11,6 +11,7 @@ type props = TouchableOpacityProps & {
 export function CoffeeType({ name, typeIsSelected, ...rest }: props) {
   return (
     <TouchableOpacity
+      activeOpacity={1}
       style={[styles.container, typeIsSelected && { backgroundColor: THEME.COLORS.PURPLE }]}
       {...rest}
     >

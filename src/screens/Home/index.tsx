@@ -30,8 +30,6 @@ export function Home() {
     }
   }
 
-  console.log(typeFilter)
-
   useEffect(() => {
     getCoffees().then((data) => {
       setCoffeeList(data)
@@ -82,7 +80,7 @@ export function Home() {
               </Text>
               {
                 filterTradicional.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>
@@ -97,7 +95,7 @@ export function Home() {
               </Text>
               {
                 filterSweet.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>
@@ -112,7 +110,7 @@ export function Home() {
               </Text>
               {
                 filterSpecial.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>

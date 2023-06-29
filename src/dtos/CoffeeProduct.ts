@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native'
+
 export type CoffeeProduct = {
   id: number;
   name: string;
