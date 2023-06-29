@@ -1,0 +1,3 @@
+const CART_STORAGE = '@IGNITE-COFFEESHOP-CART';
+
+export { CART_STORAGE }
