@@ -22,7 +22,7 @@ type RouteParamsProps = {
 }
 
 export function Coffee() {
-  const { addProductCart } = useCart()
+  const { addProductCart, cart } = useCart()
   const route = useRoute()
   const { productId } = route.params as RouteParamsProps
 
@@ -104,6 +104,12 @@ export function Coffee() {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ paddingHorizontal: 8 }} onPress={handleOpenCart}>
+            {
+              cart.length > 0 &&
+              <View style={styles.cartNumber}>
+                <Text style={styles.text}>{cart.length}</Text>
+              </View>
+            }
             <ShoppingCart
               size={24}
               color={THEME.COLORS.PURPLE}

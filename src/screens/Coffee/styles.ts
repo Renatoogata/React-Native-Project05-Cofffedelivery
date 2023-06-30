@@ -20,6 +20,26 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  cartNumber: {
+    position: 'absolute',
+    right: 1,
+    marginTop: -14,
+    marginRight: -4,
+
+    backgroundColor: THEME.COLORS.PURPLE,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 1000,
+    width: 18,
+    height: 18,
+  },
+
+  text: {
+    fontFamily: THEME.FONTS.ROBOTO_REGULAR,
+    fontSize: THEME.SIZES.ROBOTO.XS,
+    color: THEME.COLORS.WHITE,
+  },
+
   typeCoffeeContainer: {
     marginTop: 34,
     maxWidth: 86,
