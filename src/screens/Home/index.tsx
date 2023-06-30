@@ -79,8 +79,8 @@ export function Home() {
                 Tradicionais
               </Text>
               {
-                filterTradicional.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                filterTradicional.map((coffee, index) => (
+                  <CoffeeCardHorizontal key={coffee.id} index={index} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>
@@ -94,8 +94,8 @@ export function Home() {
                 Doces
               </Text>
               {
-                filterSweet.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                filterSweet.map((coffee, index) => (
+                  <CoffeeCardHorizontal key={coffee.id} index={index} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>
@@ -109,8 +109,8 @@ export function Home() {
                 Especial
               </Text>
               {
-                filterSpecial.map((coffee) => (
-                  <CoffeeCardHorizontal key={coffee.id} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
+                filterSpecial.map((coffee, index) => (
+                  <CoffeeCardHorizontal key={coffee.id} index={index} image={coffee.image} id={coffee.id} name={coffee.name} description={coffee.description} price={coffee.price} />
                 ))
               }
             </View>

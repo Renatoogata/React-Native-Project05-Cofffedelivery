@@ -45,15 +45,15 @@ export function CoffeeType({ name, typeIsSelected = false, ...rest }: props) {
   });
 
   function onPressIn() {
-    scale.value = withTiming(1.2, { easing: Easing.ease, duration: 200 })
+    scale.value = withTiming(1.2, { easing: Easing.sin, duration: 200 })
 
     setTimeout(() => {
-      scale.value = withTiming(1, { easing: Easing.ease, duration: 200 })
+      scale.value = withTiming(1, { easing: Easing.sin, duration: 200 })
     }, 200) // forma de lidar com a escala que não volta se soltar muito rapido
   }
 
   function onPressOut() {
-    scale.value = withTiming(1, { easing: Easing.ease, duration: 200 })
+    scale.value = withTiming(1, { easing: Easing.ease, duration: 100 })
   }
 
   useEffect(() => {
