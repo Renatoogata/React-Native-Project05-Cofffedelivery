@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, TouchableOpacity, View, Image, ToastAndroid } from "react-native";
 import { ArrowLeft, ShoppingCart, Plus, Minus } from 'phosphor-react-native'
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Button, colors } from "@components/Button";
 import { CoffeeSizeSelectRadio } from "@components/CoffeeSizeSelectRadio";
+import { showToast } from "@components/Toast";
 
 import { getCoffees } from "@api/mock/coffeeList";
+import { useCart } from "@hooks/useCart";
+import { StorageCartProps } from "@storage/storageCart";
 
 import coffeeCup from '@assets/coffeeCup.png'
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
 
+
 type RouteParamsProps = {
   productId: number
 }
 
 export function Coffee() {
+  const { addProductCart } = useCart()
   const route = useRoute()
   const { productId } = route.params as RouteParamsProps
 
@@ -53,8 +58,31 @@ export function Coffee() {
     }
   }
 
-  function handleAddToCart() {
-    console.log('Adicionao ao carrinho')
+  async function handleAddToCart() {
+    if (selectedSize === '') {
+      showToast({ message: 'Escolha um tamanho', type: 'error' });
+      return
+    }
+
+    const sizeNumber = parseInt(selectedSize);
+
+    const coffee: StorageCartProps = {
+      id: coffeeSelected!.id,
+      image: coffeeSelected?.image,
+      name: coffeeSelected!.name,
+      price: coffeeSelected!.price,
+      quantity: quantity,
+      size: sizeNumber,
+    }
+
+    try {
+      await addProductCart(coffee);
+      showToast({ message: 'Café adicionado ao carrinho com sucesso!', type: 'success' });
+      navigation.navigate('cart');
+    } catch (error) {
+      showToast({ message: 'Erro ao adicionar. Tente novamente mais tarde!', type: 'error' });
+      throw (error);
+    }
   }
 
   useEffect(() => {

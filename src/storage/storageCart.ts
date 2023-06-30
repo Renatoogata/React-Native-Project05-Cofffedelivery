@@ -38,18 +38,22 @@ export async function storageProductSave(newProduct: StorageCartProps) {
         return product;
       });
     } else {
+      newProduct.price = Number(newProduct.quantity * newProduct.price)
       products.push(newProduct);
     }
 
     const productsUpdated = JSON.stringify(products);
     await AsyncStorage.setItem(CART_STORAGE, productsUpdated);
+    return products;
 
   } catch (error) {
     throw (error)
   }
 }
 
-export async function storageProductChangeQuantity(productId: number, price: number, add?: boolean, sub?: boolean) {
+export async function storageProductChangeQuantity(productId: number, operation: boolean) {
+  // operation true => soma 
+  // operation false => subtração
   try {
     let products = await storageProductGetAll();
 
@@ -57,12 +61,14 @@ export async function storageProductChangeQuantity(productId: number, price: num
 
     if (productExists.length > 0) {
       products = products.map(product => {
-        if (product.id === productId && add) {
+        if (product.id === productId && operation === true) {
+          const price = product.price / product.quantity
           product.quantity = Number(product.quantity + 1)
           product.price = Number(product.price + price)
         }
 
-        if (product.id === productId && sub) {
+        if (product.id === productId && operation === false && product.quantity > 1) {
+          const price = product.price / product.quantity
           product.quantity = Number(product.quantity - 1)
           product.price = Number(product.price - price)
         }
@@ -73,6 +79,7 @@ export async function storageProductChangeQuantity(productId: number, price: num
 
     const productsUpdated = JSON.stringify(products);
     await AsyncStorage.setItem(CART_STORAGE, productsUpdated);
+    return products
   } catch (error) {
     throw (error)
   }
@@ -90,4 +97,15 @@ export async function storageProductRemove(productId: number) {
   } catch (error) {
     throw (error)
   }
+}
+
+export async function storageRemoveAll() {
+  try {
+    await AsyncStorage.setItem(CART_STORAGE, '')
+
+    return [];
+  } catch (error) {
+    throw (error)
+  }
+
 }
