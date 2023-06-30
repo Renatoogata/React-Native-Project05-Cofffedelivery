@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { View } from "react-native";
-import Animated, { SlideInUp } from "react-native-reanimated";
+import Animated, { SlideInRight } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
+import Logo from '@assets/logoImg.svg'
+import LogoText from '@assets/logoText.svg'
+
 import { styles } from "./styles";
-import Logo from '@assets/logo.svg'
 
 export function AppStart() {
   const navigation = useNavigation()
@@ -20,8 +22,11 @@ export function AppStart() {
     <View
       style={styles.container}
     >
-      <Animated.View entering={SlideInUp}>
+      <Animated.View entering={SlideInRight.delay(400).duration(600)}>
         <Logo />
+      </Animated.View>
+      <Animated.View style={{ marginLeft: 10, }} entering={SlideInRight.delay(1200).duration(600)}>
+        <LogoText />
       </Animated.View>
     </View>
   )

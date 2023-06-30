@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
 
   text: {
-    color: THEME.COLORS.PURPLE_DARK,
+    // color: THEME.COLORS.PURPLE_DARK,
     fontSize: THEME.SIZES.ROBOTO.TAG
   }
 })
