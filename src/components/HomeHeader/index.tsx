@@ -5,14 +5,30 @@ import { useCart } from "@hooks/useCart";
 
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
+import Animated, { color, interpolateColor, SharedValue, useAnimatedStyle } from "react-native-reanimated";
 
-export function HomeHeader() {
+type Props = {
+  scrollY: SharedValue<number>
+}
+
+
+export function HomeHeader({ scrollY }: Props) {
   const navigation = useNavigation()
   const { cart } = useCart()
 
   function handleOpenCart() {
     navigation.navigate('cart');
   }
+
+  const animatedTextStyle = useAnimatedStyle(() => {
+    return {
+      color: interpolateColor(
+        scrollY.value,
+        [424, 460],
+        [THEME.COLORS.GRAY_900, THEME.COLORS.GRAY_200]
+      )
+    }
+  })
 
   return (
     <View style={styles.container}>
@@ -22,9 +38,9 @@ export function HomeHeader() {
           color={THEME.COLORS.PURPLE}
           weight='fill'
         />
-        <Text style={styles.headerText}>
+        <Animated.Text style={[styles.headerText, animatedTextStyle]}>
           Porto Alegre, RS
-        </Text>
+        </Animated.Text>
 
         <TouchableOpacity style={{ paddingHorizontal: 8 }} onPress={handleOpenCart}>
           {

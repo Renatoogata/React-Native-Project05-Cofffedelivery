@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Animated, { FadeInUp, ZoomIn, ZoomOut } from 'react-native-reanimated';
+import Animated, { ZoomIn } from 'react-native-reanimated';
 
 import { styles } from "./styles";
 

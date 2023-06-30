@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
+import Animated, {
+  interpolate,
+  interpolateColor,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
 
 import { getCoffees } from "@api/mock/coffeeList";
 
@@ -7,11 +14,13 @@ import { HomeHeader } from "@components/HomeHeader";
 import { Carousel } from "@components/Carousel";
 import { Input } from "@components/Input";
 import { CoffeeType } from "@components/CoffeeType";
-
-import { styles } from "./styles";
-import CoffeeImg from '@assets/coffee.svg'
 import { CoffeeCardHorizontal } from "@components/CoffeeCardHorizontal";
+
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
+
+import CoffeeImg from '@assets/coffee.svg'
+import { styles } from "./styles";
+import { THEME } from "@styles/theme";
 
 export function Home() {
   const [coffeeList, setCoffeeList] = useState<CoffeeProduct[]>([]);
@@ -30,6 +39,34 @@ export function Home() {
     }
   }
 
+  const scrollY = useSharedValue(0)
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = (event.contentOffset.y)
+    }
+  })
+
+  const animatedHeaderStyle = useAnimatedStyle(() => {
+    return {
+      paddingLeft: interpolate(
+        scrollY.value,
+        [0, 424, 460, 2000],
+        [32, 32, 52, 52]
+      ),
+      paddingRight: interpolate(
+        scrollY.value,
+        [0, 424, 460, 2000],
+        [32, 32, 18, 18]
+      ),
+      backgroundColor: interpolateColor(
+        scrollY.value,
+        [424, 460],
+        [THEME.COLORS.GRAY_100, THEME.COLORS.WHITE]
+      )
+    }
+  })
+
   useEffect(() => {
     getCoffees().then((data) => {
       setCoffeeList(data)
@@ -38,10 +75,15 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <HomeHeader />
-      </View>
-      <ScrollView contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <Animated.View style={[styles.header, animatedHeaderStyle]}>
+        <HomeHeader scrollY={scrollY} />
+      </Animated.View>
+      <Animated.ScrollView
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        contentContainerStyle={{ paddingBottom: 12 }}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.header}>
           <Text style={styles.title}>
             Encontre o café perfeito para qualquer hora do dia
@@ -116,7 +158,7 @@ export function Home() {
             </View>
           }
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   )
 }

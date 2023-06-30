@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 72,
-    paddingBottom: 38,
+    paddingBottom: 20,
 
   },
 

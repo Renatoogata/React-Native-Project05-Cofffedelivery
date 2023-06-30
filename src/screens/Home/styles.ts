@@ -10,9 +10,11 @@ export const styles = StyleSheet.create({
   header: {
     backgroundColor: THEME.COLORS.GRAY_100,
     paddingHorizontal: 32,
+
   },
 
   title: {
+    paddingTop: 18,
     fontFamily: THEME.FONTS.BALOO2_BOLD,
     fontSize: THEME.SIZES.ROBOTO.LG,
     color: THEME.COLORS.WHITE,
