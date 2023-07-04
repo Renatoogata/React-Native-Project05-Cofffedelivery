@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { TouchableOpacity, View, Text, ScrollView, FlatList, Pressable, Alert } from "react-native";
+import { TouchableOpacity, View, Text, FlatList, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft, Trash } from 'phosphor-react-native';
 
@@ -10,6 +10,7 @@ import { useCart } from "@hooks/useCart";
 import { showToast } from "@components/Toast";
 import { Button, colors } from "@components/Button";
 import { CoffeeCardCart } from "@components/CoffeeCardCart";
+import { CartEmpty } from "@components/CartEmpty";
 
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
@@ -143,6 +144,9 @@ export function Cart() {
         style={{ flex: 1, }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60 }}
+        ListEmptyComponent={() => (
+          <CartEmpty />
+        )}
       />
 
       <View style={styles.footer}>

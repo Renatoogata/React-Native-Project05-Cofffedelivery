@@ -1,10 +1,11 @@
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 import { Button, colors } from "@components/Button";
 
 import BikeSvg from '@assets/moto.svg'
+import Animated, { SlideInRight, BounceIn } from "react-native-reanimated";
 
 export function Successful() {
   const navigation = useNavigation();
@@ -14,7 +15,7 @@ export function Successful() {
   }
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container} entering={BounceIn.delay(1200).duration(600)}>
       <BikeSvg />
 
       <Text style={styles.title}>
@@ -25,13 +26,13 @@ export function Successful() {
         Agora é só aguardar que logo o café chegará até você!
       </Text>
 
-      <View style={styles.button}>
+      <Animated.View style={styles.button} entering={SlideInRight.delay(3000).duration(600)}>
         <Button
           color={colors.purpleDark}
           title='IR PARA A HOME'
           onPress={handleBackToHome}
         />
-      </View>
-    </View>
+      </Animated.View>
+    </Animated.View>
   )
 }
