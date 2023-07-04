@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { TouchableOpacity, View, Text, ScrollView, FlatList } from "react-native";
+import { useRef, useState } from "react";
+import { TouchableOpacity, View, Text, ScrollView, FlatList, Pressable, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ArrowLeft } from 'phosphor-react-native';
+import { ArrowLeft, Trash } from 'phosphor-react-native';
+
+import { Swipeable } from 'react-native-gesture-handler';
 
 import { useCart } from "@hooks/useCart";
 
@@ -15,6 +17,9 @@ import { useEffect } from "react";
 
 export function Cart() {
   const [total, setTotal] = useState(0)
+
+  const swipeableRefs = useRef<Swipeable[]>([]);
+
   const priceFormated = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
   const { cart, removeProductCart, addOrRemoveOneQuantity, removeAll } = useCart()
@@ -68,6 +73,21 @@ export function Cart() {
     }
   }
 
+  function handleRemoveCoffee(coffeeId: number, index: number) {
+    swipeableRefs.current?.[index].close(); // fechando o Swipeable por referencia
+
+    Alert.alert("Remover", "Deseja realmente remover esse produto?", [
+      {
+        text: 'Sim',
+        onPress: () => removeCoffee(coffeeId)
+      },
+      {
+        text: 'Não',
+        style: 'cancel'
+      }
+    ])
+  }
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -79,7 +99,7 @@ export function Cart() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleGoBack} style={{ left: 1, position: 'absolute' }}>
+        <TouchableOpacity onPress={handleGoBack} style={{ position: 'absolute', left: 32 }}>
           <ArrowLeft
             size={24}
             color={THEME.COLORS.GRAY_100}
@@ -93,11 +113,34 @@ export function Cart() {
 
       <FlatList
         data={cart}
-        keyExtractor={item => (String(item.id))}
-        renderItem={(item) => (
-          <CoffeeCardCart coffee={item.item} removeCoffee={removeCoffee} addOne={addOne} removeOne={removeOne} />
+        keyExtractor={(item) => (String(item.id))}
+        renderItem={({ item, index }) => (
+          <Swipeable
+            ref={(ref) => {
+              if (ref) {
+                swipeableRefs.current.push(ref);
+              }
+            }}
+            overshootLeft={false} // para deslizar até o fim só deixar true
+            containerStyle={styles.swipeableContainer}
+            renderRightActions={() => null}
+            leftThreshold={60}
+            onSwipeableOpen={() => handleRemoveCoffee(item.id, index)}
+            renderLeftActions={() => (
+              <View
+                style={styles.swipeableRemove}
+              >
+                <Trash
+                  size={32}
+                  color={THEME.COLORS.RED_DARK}
+                />
+              </View>
+            )}
+          >
+            <CoffeeCardCart coffee={item} removeCoffee={removeCoffee} addOne={addOne} removeOne={removeOne} />
+          </Swipeable>
         )}
-        style={{ flex: 1 }}
+        style={{ flex: 1, }}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60 }}
       />

@@ -5,11 +5,20 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: -12,
+    marginBottom: 30,
+    backgroundColor: THEME.COLORS.GRAY_800,
+    paddingHorizontal: 8,
+    height: 120,
+    width: 334,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderTopLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
 
   image: {
-    paddingBottom: 56,
+    marginTop: -60,
+    //paddingBottom: 56,
   },
 
   info: {

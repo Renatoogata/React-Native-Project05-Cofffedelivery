@@ -4,8 +4,16 @@ import { THEME } from "@styles/theme";
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 120,
+    paddingHorizontal: 32,
     flexDirection: 'row',
+    backgroundColor: THEME.COLORS.WHITE,
+    borderTopWidth: 1,
+    borderTopColor: THEME.COLORS.GRAY_800,
+    borderBottomWidth: 1,
+    borderBottomColor: THEME.COLORS.GRAY_800,
   },
 
   infoContainer: {

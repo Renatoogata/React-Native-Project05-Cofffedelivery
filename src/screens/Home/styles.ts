@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
 
   typeCoffee: {
     marginTop: 20,
-    marginBottom: 12,
+    marginBottom: 24,
     fontFamily: THEME.FONTS.BALOO2_BOLD,
     fontSize: THEME.SIZES.BALOO2.XS,
     color: THEME.COLORS.GRAY_100,
