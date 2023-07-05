@@ -25,7 +25,9 @@
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-toast-message": "^2.1.6",
-    "react-native-gesture-handler": "~2.9.0"
+    "react-native-gesture-handler": "~2.9.0",
+    "@shopify/react-native-skia": "0.1.172",
+    "expo-haptics": "~12.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

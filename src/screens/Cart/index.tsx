@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft, Trash } from 'phosphor-react-native';
 
 import { Swipeable } from 'react-native-gesture-handler';
+import * as Haptics from 'expo-haptics'
 
 import { useCart } from "@hooks/useCart";
 
@@ -65,6 +66,7 @@ export function Cart() {
 
   async function handleFinishOrder() {
     try {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       await removeAll();
       showToast({ message: 'Pedido realizado com sucesso!', type: "success" })
       navigation.navigate('successful')
@@ -149,23 +151,26 @@ export function Cart() {
         )}
       />
 
-      <View style={styles.footer}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
-          <Text style={styles.text}>
-            Valor Total
-          </Text>
+      {
+        cart.length === 0 ? null :
+          <View style={styles.footer}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+              <Text style={styles.text}>
+                Valor Total
+              </Text>
 
-          <Text style={styles.textPrice}>
-            R$ {priceFormated}
-          </Text>
-        </View>
+              <Text style={styles.textPrice}>
+                R$ {priceFormated}
+              </Text>
+            </View>
 
-        <Button
-          title="CONFIRMAR PEDIDO"
-          color={colors.yellowRegular}
-          onPress={handleFinishOrder}
-        />
-      </View>
+            <Button
+              title="CONFIRMAR PEDIDO"
+              color={colors.yellowRegular}
+              onPress={handleFinishOrder}
+            />
+          </View>
+      }
     </View>
   )
 }

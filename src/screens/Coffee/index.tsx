@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View, Image, ToastAndroid } from "react-native";
+import { Text, TouchableOpacity, View, Image } from "react-native";
 import { ArrowLeft, ShoppingCart, Plus, Minus } from 'phosphor-react-native'
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Button, colors } from "@components/Button";
 import { CoffeeSizeSelectRadio } from "@components/CoffeeSizeSelectRadio";
 import { showToast } from "@components/Toast";
+import * as Haptics from 'expo-haptics'
 
 import { getCoffees } from "@api/mock/coffeeList";
 import { useCart } from "@hooks/useCart";
 import { StorageCartProps } from "@storage/storageCart";
 
-import coffeeCup from '@assets/coffeeCup.png'
 import { THEME } from "@styles/theme";
 import { styles } from "./styles";
 import { CoffeeProduct } from "@dtos/CoffeeProduct";
+import { Smoke } from "@components/Smoke";
 
 
 type RouteParamsProps = {
@@ -29,6 +30,7 @@ export function Coffee() {
   const [coffeeSelected, setCoffeeSelected] = useState<CoffeeProduct>()
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('')
+  const [errorSelect, setErrorSelect] = useState(false);
 
   const navigation = useNavigation()
 
@@ -43,6 +45,7 @@ export function Coffee() {
   }
 
   function handleSelectSize(size: string) {
+    setErrorSelect(false);
     setSelectedSize(size);
   }
 
@@ -59,7 +62,9 @@ export function Coffee() {
   }
 
   async function handleAddToCart() {
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     if (selectedSize === '') {
+      setErrorSelect(true);
       showToast({ message: 'Escolha um tamanho', type: 'error' });
       return
     }
@@ -145,16 +150,15 @@ export function Coffee() {
         </Text>
 
         <View style={styles.image}>
-          <Image
-            source={coffeeCup}
-          />
+          <Smoke />
         </View>
 
       </View>
       <View style={styles.footer}>
-        <Text style={styles.sizeText}>Selecione o tamanho:</Text>
+        <Text style={[styles.sizeText, { color: errorSelect ? THEME.COLORS.RED : THEME.COLORS.GRAY_400 }]}>Selecione o tamanho:</Text>
 
         <CoffeeSizeSelectRadio
+          errorSelect={errorSelect}
           options={['114', '140', '227']}
           selectedSize={selectedSize}
           onSelectSize={handleSelectSize}
